@@ -2,6 +2,11 @@
 	font-family: 'Varela Round', sans-serif;
 }
 
+body {
+	margin: 0;
+	padding: 0;
+}
+
 @keyframes page-transition-out {
 	0% { top: 0; }
 	100% { top: -500px; }
@@ -11,12 +16,15 @@
 	100% { top: -500px; }
 }
 
-
+#instruction-content {
+	width: 30%;
+	display: inline-block;
+}
 
 
 #container {
-  width: 800px;
-  height: 800px;
+  width: 500px;
+  height: 500px;
   border: 1px solid black;
   margin: auto;
 }
@@ -32,14 +40,44 @@
 	-webkit-animation: page-transition-out 1s ease;
 }
 
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+nav {
+	border-bottom: 1px solid black;
+	margin-bottom: 16px;
+}
+
+nav ul {
+	text-align: center;
+}
+
+nav li {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+
+
+[class^=JJRA-logo] {
+	background-image: url('img/nick-avatar.jpg');
+	background-size: 100%;
+	border-radius: 100px;
+}
+
 .JJRA-logo {
 	margin-left: auto;
 	margin-right: auto;
 	width: 200px;
 	height: 200px;
-	background-image: url('img/nick-avatar.jpg');
-	background-size: 100%;
-	border-radius: 100px;
+	
+}
+
+.JJRA-logo-small {
+	width: 48px;
+	height: 48px;
 }
 
 button {
@@ -58,3 +96,27 @@ button:hover {
 button:focus {
 	outline: none;
 }
+
+.recharge-title {
+	position: relative;
+}
+
+.recharge-status {
+	font-size: 18px;
+	float: right;
+	position: relative;
+	top: 4px;
+}
+
+.recharge-status-wait {
+	color: #ff0000;
+}
+.recharge-status-ready {
+	color: #03ff00;
+}
+
+.progress-bar {
+	background-color: #03ff00;
+}
+
+
