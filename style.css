@@ -1,6 +1,60 @@
+* {
+	font-family: 'Varela Round', sans-serif;
+}
+
+@keyframes page-transition-out {
+	0% { top: 0; }
+	100% { top: -500px; }
+}
+@-webkit-keyframes page-transition-out {
+	0% { top: 0; }
+	100% { top: -500px; }
+}
+
+
+
+
 #container {
   width: 800px;
   height: 800px;
   border: 1px solid black;
   margin: auto;
+}
+
+.hero-content {
+	margin-top: 80px;
+	text-align: center; 
+	position: relative;
+}
+
+.hero-content.page-transition-out {
+	animation: page-transition-out 1s ease;
+	-webkit-animation: page-transition-out 1s ease;
+}
+
+.JJRA-logo {
+	margin-left: auto;
+	margin-right: auto;
+	width: 200px;
+	height: 200px;
+	background-image: url('img/nick-avatar.jpg');
+	background-size: 100%;
+	border-radius: 100px;
+}
+
+button {
+	font-size: 24px;
+	padding: 8px 24px;
+	border-radius: 3px;
+	background-color: #74e443;
+	border: 2px solid #333;
+}
+
+button:hover {
+	cursor: hand;
+	cursor: pointer;
+	background-color: #82ff4b;
+}
+button:focus {
+	outline: none;
 }
