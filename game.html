@@ -2,12 +2,47 @@
 <html>
 <head>
   <title>:~)</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+  <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="./style.css">
 </head>
 <body>
-    <div id="container"></div>
-    <script src="./kinetic.min.js"></script>
 
+	<nav>
+		<ul>
+			<li><div class="JJRA-logo-small"></div></li>
+			<li><h2>The NickCAGE</h2></li>
+		</ul>
+	</nav>
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-4">
+				<ul>
+					<li><h3>Instructions</h3></li>
+					<li>Click on the screen to try and hit the player in the maze</li>
+					<li>You'll see a notification if you're close </li>
+					<li>You win if you click right on the player</li>
+					<li>If the player reaches the end of the maze, you lose</li>
+				</ul>
+				
+				<h3 class="recharge-title">Recharge Timer: <span class="recharge-status recharge-status-ready">Click away!</span></h3>
+
+				<div class="progress">
+  					<div class="progress-bar" role="progressbar" style="width: 100%;">
+  					</div>
+				</div>
+			</div>
+			<div class="col-xs-8">
+				<div id="container"></div>
+			</div>
+		</div>
+	</div>
+    
+	
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="./cooldown.js"></script>
+    <script src="./kinetic.min.js"></script>
     <script src="./script.js"></script>
 </body>
 </html>
