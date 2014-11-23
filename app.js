@@ -93,8 +93,10 @@ net.createServer(function(c) {
 function parseData(data) {
     var string = decoder.write(data);
 
+    console.log(string);
 
     if(string.substr(0,1) == "s") {
+    console.log(string);
 
         var mazeSettings = string.match(/.*?:(.*)/g);
         var setting;
