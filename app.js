@@ -45,9 +45,42 @@ var change;
 net.createServer(function(c) {
     c.on('data', function (data) {
         change = parseData(data);
-    });
 
-    checkClient(c);
+        io.on('connection', function (socket) {
+            console.log('connection');
+
+            switch(change) {
+                case 'maze':
+                    socket.emit('maze', playerMaze);
+                    console.log('showing Player maze');
+                    break;
+                case 'bomb':
+                /* bomb
+                    0 - miss
+                    1 - almost
+                    2 - hit
+                 */
+                    socket.emit('bomb', bomb);
+                    break;
+                case 'dead':
+                    socket.emit('dead', true);
+                    break;
+            }
+
+            socket.on('click', function (data) {
+                console.log('player clicked');
+
+                clickPos = {
+                    x: Math.floor(data.x),
+                    y: Math.floor(data.y)
+                }
+                c.write(clickPos.x+','+clickPos.y);
+
+                revealMaze();
+                socket.emit('maze', playerMaze);
+            });
+        });
+    });
     c.pipe(c);
 }).listen(5000);
 
@@ -114,38 +147,4 @@ function revealMaze() {
 }
 
 function checkClient(c) {
-    io.on('connection', function (socket) {
-        console.log('connection');
-
-        switch(change) {
-            case 'maze':
-                socket.emit('maze', playerMaze);
-                console.log('showing Player maze');
-                break;
-            case 'bomb':
-            /* bomb
-                0 - miss
-                1 - almost
-                2 - hit
-             */
-                socket.emit('bomb', bomb);
-                break;
-            case 'dead':
-                socket.emit('dead', true);
-                break;
-        }
-
-        socket.on('click', function (data) {
-            console.log('player clicked');
-
-            clickPos = {
-                x: Math.floor(data.x),
-                y: Math.floor(data.y)
-            }
-            c.write(clickPos.x+','+clickPos.y);
-
-            revealMaze();
-            socket.emit('maze', playerMaze);
-        });
-    });
 }
