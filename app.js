@@ -8,47 +8,49 @@ var path = require('path');
 
 var net = require('net');
 
-// http.listen(80);
+var buffer = require('buffer');
 
-// app.use(express.static(path.join(__dirname, 'public')));
+http.listen(80);
 
-// var playerPos = {
-//     x: 0,
-//     y: 0
-// };
-// var clickPos = {
-//     x: null,
-//     y: null
-// }
-// var clickRadius = 1;
+app.use(express.static(path.join(__dirname, 'public')));
 
-// io.on('connection', function (socket) {
-//     socket.on('p1 move', function (data) {
-//         playerPos = {
-//             x: Math.floor(data.x),
-//             y: Math.floor(data.y)
-//         }
-//     });
-//     socket.on('p2 click', function (data) {
+var playerPos = {
+    x: 0,
+    y: 0
+};
+var clickPos = {
+    x: null,
+    y: null
+}
+var clickRadius = 1;
 
-//         clickPos = {
-//             x: Math.floor(data.x),
-//             y: Math.floor(data.y)
-//         }
+io.on('connection', function (socket) {
+    socket.on('p1 move', function (data) {
+        playerPos = {
+            x: Math.floor(data.x),
+            y: Math.floor(data.y)
+        }
+    });
+    socket.on('p2 click', function (data) {
 
-//         console.log(clickPos);
+        clickPos = {
+            x: Math.floor(data.x),
+            y: Math.floor(data.y)
+        }
 
-//         //Win
-//         if(playerPos.x == clickPos.x &&
-//            playerPos.y == clickPos.y) {
-//             socket.emit('p1 endGame', true);
-//             socket.emit('p2 endGame', true);
-//         } else if(playerNearClick()) {
-//             socket.emit('p1 closeClick', true);
-//             socket.emit('p2 closeClick', true);
-//         }
-//     });
-// });
+        console.log(clickPos);
+
+        //Win
+        if(playerPos.x == clickPos.x &&
+           playerPos.y == clickPos.y) {
+            socket.emit('p1 endGame', true);
+            socket.emit('p2 endGame', true);
+        } else if(playerNearClick()) {
+            socket.emit('p1 closeClick', true);
+            socket.emit('p2 closeClick', true);
+        }
+    });
+});
 
 function playerNearClick() {
     for(var x = clickPos.x - clickRadius; x <= clickPos.x + clickRadius; x++) {
@@ -63,9 +65,9 @@ function playerNearClick() {
 }
 
 net.createServer(function(c) {
-  c.on('data', function(data) {
-    console.log(data);
-  });
-  c.write('hello\r\n');
-  c.pipe(c);
+    c.on('data', function(data) {
+        console.log(data.readInt32BE(5));
+    });
+    c.write('hello\r\n');
+    c.pipe(c);
 }).listen(5000);
