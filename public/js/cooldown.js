@@ -6,22 +6,27 @@ $(document).ready(function() {
 
 
 
-	$("#container:not(.disable-click)").click(function() {
-		clickEnabled = false
+	$("#container").click(function() {
+		if (clickEnabled === true) {
+			clickEnabled = false
+			launchRecharge()
+		}
+		
+		console.log(this)
+		
+	})
+	
+	var launchRecharge = function() {
 		chargeLevel = 0
 		recharge()
-		$("#container").toggleClass(".disable-click")
-		console.log(this)
 		rechargeTimer = setInterval(function() {
 			chargeLevel = chargeLevel + 5
 			recharge()
 			if (chargeLevel >= 100) {
 				clearInterval(rechargeTimer)
-				$("#container").toggleClass(".disable-click")
 			}
 		}, 100)
-	})
-	
+	}
 
 	var recharge = function() {
 		$(".progress-bar").css("width", chargeLevel + "%")
