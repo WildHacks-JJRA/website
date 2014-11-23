@@ -12,18 +12,25 @@ socket.on('p2 closeClick', function (data) {
 
 // Detect mouse pos and send x,y points
 var $container = $("#container");
+var clickPos = {};
 $container.on('click', function(e) {
     console.log("CLICKED THE BOX");
     if(clickEnabled) {
-        console.log({
-            x: e.offsetX / lineSize,
-            y: e.offsetY / lineSize
+        clickPos = {
+            x: Math.floor(e.offsetX / lineSize),
+            y: Math.floor(e.offsetY / lineSize)
+        };
+
+        $("<div><div></div></div>").addClass("circle").offset({ left: e.pageX-25, top: e.pageY-25 }).appendTo("body").find('div').animate({
+            height: 50,
+            width: 50,
+            marginTop: 0,
+            marginLeft: 0
+        }, 500, 'swing', function() {
+            $(this).parent().fadeOut('slow');
         });
 
-        socket.emit('click', {
-            x: e.offsetX / lineSize,
-            y: e.offsetY / lineSize
-        });
+        socket.emit('click', clickPos);
         clickEnabled = false;
         launchRecharge();
     }
