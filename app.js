@@ -60,7 +60,7 @@ function parseData(data) {
         var mazeSettings = string.match(/.*?:(.*)/g);
         var setting;
 
-        cosole.log(mazeSettings);
+        console.log(mazeSettings);
 
         for(var i = 0; i < mazeSettings.length; i++) {
             setting = mazeSettings[i].split(':');
