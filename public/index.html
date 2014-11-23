@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tik tak toe</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+  <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h4 class="modal-title" id="mySmallModalLabel">Set Username</h4>
+        </div>
+        <div class="modal-body">
+          <input type="text" class="set-username-input form-control input-lg" placeholder="Username">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <h1 class="text-center">BEST TIC TAC TOE<br><small>:~)</small></h1>
+    <div class="col-md-8 lobby-list">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          BEST PLAYER NA <strong> - Jung</strong>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-body">
+          LOL SCRUBS <strong> - Jung</strong>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 chat-room">
+
+      <div role="tabpanel">
+        <div class="col-xs-12">
+          <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#global-chat" aria-controls="home" role="tab" data-toggle="tab">Global</a></li>
+            <li role="presentation"><a href="#lobby-chat" aria-controls="profile" role="tab" data-toggle="tab">Lobby</a></li>
+          </ul>
+        </div>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane active" id="global-chat">
+            <div class="col-xs-12">
+              <ul class="chat-text">
+                <li>
+                  <h4>Global Chat</h4>
+                </li>
+              </ul>
+              <input type="text" class="chat-box" placeholder=":~)">
+            </div>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="lobby-chat">
+            <div class="col-xs-12">
+              <ul class="chat-text">
+                <li>
+                  <h4>Lobby Chat</h4>
+                </li>
+              </ul>
+              <input type="text" class="chat-box" placeholder=":~)">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    var socket = io('http://localhost');
+
+    $('.bs-example-modal-sm').modal({
+      backdrop: 'static',
+      keyboard: true
+    }).show();
+  </script>
+  <script src="/assets/script.js"></script>
+</body>
+</html>
