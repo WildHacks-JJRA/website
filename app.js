@@ -8,8 +8,6 @@ var path = require('path');
 
 var net = require('net');
 
-var buffer = require('buffer');
-
 http.listen(80);
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -64,9 +62,12 @@ function playerNearClick() {
     return false;
 }
 
+var StringDecoder = require('string_decoder').StringDecoder;
+var decoder = new StringDecoder('utf8');
+
 net.createServer(function(c) {
     c.on('data', function(data) {
-        console.log(data.readInt32BE(5));
+        console.log(decoder.write(data));
     });
     c.write('hello\r\n');
     c.pipe(c);
