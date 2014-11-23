@@ -60,6 +60,8 @@ function parseData(data) {
         var mazeSettings = string.match(/.*?:(.*)/g);
         var setting;
 
+        cosole.log(mazeSettings);
+
         for(var i = 0; i < mazeSettings.length; i++) {
             setting = mazeSettings[i].split(':');
             if(setting[0] == 'size') {
@@ -85,6 +87,8 @@ function parseData(data) {
                 }
             }
         }
+        console.log(maze);
+        console.log(playerMaze);
         return 'maze';
     } else {
         bomb.type = string;
@@ -106,14 +110,17 @@ function revealMaze() {
             playerMaze.dmaze[y][x] = maze.dmaze[y][x];
         }
     }
+    console.log(playerMaze);
 }
 
 function checkClient(c) {
     io.on('connection', function (socket) {
+        console.log('connection');
 
         switch(change) {
             case 'maze':
                 socket.emit('maze', playerMaze);
+                console.log('showing Player maze');
                 break;
             case 'bomb':
             /* bomb
@@ -129,6 +136,7 @@ function checkClient(c) {
         }
 
         socket.on('click', function (data) {
+            console.log('player clicked');
 
             clickPos = {
                 x: Math.floor(data.x),
