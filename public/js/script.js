@@ -33,16 +33,19 @@ var mazeData = { size: '10',
 // var boxArray = example;
 var rmaze = mazeData.rmaze
 var dmaze = mazeData.dmaze
-var lineSize = mazeData.size
+// var lineSize = parseInt(mazeData.size,10)
+
 
 // var boxSize = 50;
 // var strokeSize = 2;
 
 var stage = new Kinetic.Stage({
-container: 'container',
+    container: 'container',
     width: 500,
     height: 500
 });
+
+var lineSize = Math.floor(stage.getWidth()/parseInt(mazeData.size, "10")) - 0.5
 var shapesLayer = new Kinetic.Layer();
 var wallGroup = new Kinetic.Group();
 // var boxGroup = new Kinetic.Group({
@@ -50,34 +53,57 @@ var wallGroup = new Kinetic.Group();
 //     y: 0,
 // });
 
-console.log(new Kinetic.Line({points: [0, 0, 1, 1]}))
-
-
-for (var y = 0; y < rmaze.length; y++) {
-    for (var x = 0; x < rmaze[0].length; x++) {
-        switch(rmaze[y][x]) {
-            case(0):
+for (var y = 0; y < dmaze.length; y++) {
+    for (var x = 0; x < dmaze[0].length; x++) {
+        switch(dmaze[y][x]) {
+            case('0'):
                 var wall = new Kinetic.Line({
                     // x: x * lineSize,
                     // y: y * lineSize,
-                    points: [x * lineSize, y * lineSize, (x * lineSize) + lineSize, y * lineSize],
+                    points: [x * lineSize, (y * lineSize) + lineSize, (x * lineSize) + lineSize, (y * lineSize) + lineSize],
                     stroke: 'white'
                 });
-                console.log(wall);
                 break;
 
-            case(1):
+            case('1'):
                 var wall = new Kinetic.Line({
                     // x: x * lineSize,
                     // y: y * lineSize,
-                    points: [x * lineSize, y * lineSize, (x * lineSize) + lineSize, y * lineSize],
+                    points: [x * lineSize, (y * lineSize) + lineSize, (x * lineSize) + lineSize, (y * lineSize) + lineSize],
                     stroke: 'black'
                 });
                 break;
 
         }
-        console.log(wall)
-        console.log(rmaze[y][x])
+        wallGroup.add(wall);
+        
+    }
+    
+    
+}
+
+for (var y = 0; y < rmaze.length; y++) {
+    for (var x = 0; x < rmaze[0].length; x++) {
+        switch(rmaze[y][x]) {
+            case('0'):
+                var wall = new Kinetic.Line({
+                    // x: x * lineSize,
+                    // y: y * lineSize,
+                    points: [(x * lineSize) + lineSize, y * lineSize, (x * lineSize) + lineSize, (y * lineSize) + lineSize],
+                    stroke: 'white'
+                });
+                break;
+
+            case('1'):
+                var wall = new Kinetic.Line({
+                    // x: x * lineSize,
+                    // y: y * lineSize,
+                    points: [(x * lineSize) + lineSize, y * lineSize, (x * lineSize) + lineSize, (y * lineSize) + lineSize],
+                    stroke: 'black'
+                });
+                break;
+
+        }
         wallGroup.add(wall);
         
     }
