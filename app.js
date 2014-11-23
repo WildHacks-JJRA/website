@@ -80,6 +80,7 @@ net.createServer(function(c) {
 }).listen(5000);
 
 function parseData(data) {
+    console.log(data);
     var string = decoder.write(data);
     var stringType = string.split('\n');
 
