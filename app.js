@@ -145,8 +145,8 @@ function parseData(data) {
 }
 
 function revealMaze() {
-    for(var y = clickPos.y==0? 0 : clickPos.y-1; y < (clickPos.y+1 < maze.size? maze.size: clickPos.y+1); y++) {
-        for(var x = clickPos.x==0? 0 : clickPos.x-1; x < (clickPos.x+1 < maze.size? maze.size: clickPos.x+1); x++) {
+    for(var y = clickPos.y==0? 0 : clickPos.y-1; y < (clickPos.y+1 < maze.size? clickPos.y+1 : maze.size); y++) {
+        for(var x = clickPos.x==0? 0 : clickPos.x-1; x < (clickPos.x+1 < maze.size? clickPos.x+1 : maze.size); x++) {
             playerMaze.rmaze[y][x] = maze.rmaze[y][x];
             playerMaze.dmaze[y][x] = maze.dmaze[y][x];
         }
