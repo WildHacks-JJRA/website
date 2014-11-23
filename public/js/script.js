@@ -1,3 +1,5 @@
+var $container = $("#container");
+
 var example = [
     [0, 1, 1, 1, 1, 1, 1, 1],
     [0, 0, 0, 1, 1, 1, 1, 1],
@@ -48,6 +50,12 @@ for(var y = 0; y < boxArray.length; y++) {
                 });
                 break;
         }
+
+        box.on('mouseup', function() {
+            this.setFill('gray');
+            shapesLayer.draw();
+        });
+        box
 
         boxGroup.add(box);
     }
