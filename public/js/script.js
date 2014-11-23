@@ -28,7 +28,7 @@ function drawMaze(mazeData) {
         height: 500
     });
 
-    var lineSize = Math.floor(stage.getWidth()/parseInt(mazeData.size, "10"))
+    lineSize = Math.floor(stage.getWidth()/parseInt(mazeData.size, "10"))
     var wallLayer = new Kinetic.Layer();
     var openLayer = new Kinetic.Layer();
     var borderLayer = new Kinetic.Layer();

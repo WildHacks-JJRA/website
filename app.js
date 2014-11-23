@@ -81,7 +81,7 @@ net.createServer(function(c) {
                 x: Math.floor(data.x),
                 y: Math.floor(data.y)
             }
-            c.write(clickPos.x+','+clickPos.y);
+            // c.write(clickPos.x+','+clickPos.y);
 
             revealMaze();
             socket.emit('maze', playerMaze);

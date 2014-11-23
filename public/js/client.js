@@ -15,13 +15,13 @@ var $container = $("#container");
 $container.on('click', function(e) {
     if(clickEnabled) {
         console.log({
-            x: e.offsetX / boxSize,
-            y: e.offsetY / boxSize
+            x: e.offsetX / lineSize,
+            y: e.offsetY / lineSize
         });
 
         socket.emit('click', {
-            x: e.offsetX / boxSize,
-            y: e.offsetY / boxSize
+            x: e.offsetX / lineSize,
+            y: e.offsetY / lineSize
         });
     }
 });
