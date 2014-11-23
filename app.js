@@ -53,10 +53,9 @@ net.createServer(function(c) {
 
 function parseData(data) {
     var string = decoder.write(data);
-    var stringType = string.split('\n');
 
 
-    if(stringType[0] == "maze") {
+    if(string.substr(0,1) == "s") {
 
         var mazeSettings = string.match(/.*?:(.*)/g);
         var setting;
@@ -87,7 +86,7 @@ function parseData(data) {
             }
         }
         return 'maze';
-    } else if(stringType[0] == "bomb") {
+    } else {
         bomb.type = stringType[1];
         if(bomb.type == 2) {
             bomb.health = bomb.health-1;
