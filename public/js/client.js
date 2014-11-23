@@ -13,6 +13,7 @@ socket.on('p2 closeClick', function (data) {
 // Detect mouse pos and send x,y points
 var $container = $("#container");
 $container.on('click', function(e) {
+    console.log("CLICKED THE BOX");
     if(clickEnabled) {
         console.log({
             x: e.offsetX / lineSize,
