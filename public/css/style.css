@@ -166,3 +166,17 @@ button:focus {
 	background-color: #03ff00;
 }
 
+.circle {
+  position: absolute;
+  max-height: 50px;
+  max-width: 50px;
+	overflow: hidden;
+}
+
+.circle div {
+  background-color: rgba( 0, 150, 0, .3);
+  border-radius: 100%;
+  height: 1px;
+  width: 1px;
+  margin: 25px 0 0 25px;
+}
