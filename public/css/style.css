@@ -67,7 +67,7 @@ nav li {
 
 
 [class^=JJRA-logo] {
-	background-image: url('img/nick-avatar.jpg');
+	background-image: url('../img/nick-avatar.jpg');
 	background-size: 100%;
 	border-radius: 100px;
 }
