@@ -10,37 +10,49 @@ http.listen(8080);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-var playerOnePos = {
+var playerPos = {
     x: 0,
     y: 0
 };
+var clickPos = {
+    x: null,
+    y: null
+}
 var clickRadius = 1;
 
 io.on('connection', function (socket) {
     socket.on('p1 move', function (data) {
-        playerPos.x = Math.ceil(data.x);
-        playerPos.y = Math.ceil(data.y);
+        playerPos = {
+            x: Math.floor(data.x),
+            y: Math.floor(data.y)
+        }
     });
     socket.on('p2 click', function (data) {
 
-        //Win
-        if(playerPos.x == Math.ceil(data.x) &&
-           playerPos.y == Math.ceil(data.y)) {
-            // socket.emit('')
+        clickPos = {
+            x: Math.floor(data.x),
+            y: Math.floor(data.y)
         }
 
-        //Close
-        if(playerNearClick(data)) {
+        console.log(clickPos);
+
+        //Win
+        if(playerPos.x == clickPos.x &&
+           playerPos.y == clickPos.y) {
+            socket.emit('p1 endGame', true);
+            socket.emit('p2 endGame', true);
+        } else if(playerNearClick()) {
             socket.emit('p1 closeClick', true);
-            socket.emite('p2 closeClick', true);
+            socket.emit('p2 closeClick', true);
         }
     });
 });
 
-function playerNearClick(clickPos) {
+function playerNearClick() {
     for(var x = clickPos.x - clickRadius; x <= clickPos.x + clickRadius; x++) {
         for(var y = clickPos.y - clickRadius; y <= clickPos.y + clickRadius; y++) {
-            if(playerPos.x == x && playerPos.y) {
+            if(playerPos.x == x &&
+               playerPos.y == y) {
                 return true;
             }
         }
