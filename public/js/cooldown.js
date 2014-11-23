@@ -4,17 +4,6 @@
 	var rechargeTimer = 0
 
 
-
-	$("#container").click(function() {
-		if (clickEnabled === true) {
-			clickEnabled = false
-			launchRecharge()
-		}
-		
-		console.log(this)
-		
-	})
-	
 	var launchRecharge = function() {
 		chargeLevel = 0
 		recharge()
@@ -46,7 +35,7 @@
 			$(".recharge-status").text("Click away!")
 			$(".progress-bar").css("background-color", "#03ff00")
 			$(".recharge-status").css("color", "#03ff00")
-			
+
 
 		}
 	}
