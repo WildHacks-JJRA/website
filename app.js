@@ -55,7 +55,6 @@ function parseData(data) {
     var string = decoder.write(data);
     var stringType = string.split('\n');
 
-    console.log(string);
 
     if(stringType[0] == "maze") {
 
