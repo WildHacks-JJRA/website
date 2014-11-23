@@ -29,6 +29,11 @@ body {
   margin: auto;
 }
 
+#container.disable-click {
+	pointer-events: none;
+	opacity: 0.5;
+}
+
 .hero-content {
 	margin-top: 80px;
 	text-align: center; 
@@ -62,7 +67,7 @@ nav li {
 
 
 [class^=JJRA-logo] {
-	background-image: url('img/nick-avatar.jpg');
+	background-image: url('../img/nick-avatar.jpg');
 	background-size: 100%;
 	border-radius: 100px;
 }
@@ -118,5 +123,4 @@ button:focus {
 .progress-bar {
 	background-color: #03ff00;
 }
-
 

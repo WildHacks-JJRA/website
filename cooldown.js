@@ -6,18 +6,16 @@ $(document).ready(function() {
 
 
 
-	$("#container:not(.disable-click)").click(function() {
+	$("#container").click(function() {
 		clickEnabled = false
 		chargeLevel = 0
 		recharge()
-		$("#container").toggleClass(".disable-click")
-		console.log(this)
+		console.log(clickEnabled)
 		rechargeTimer = setInterval(function() {
 			chargeLevel = chargeLevel + 5
 			recharge()
 			if (chargeLevel >= 100) {
 				clearInterval(rechargeTimer)
-				$("#container").toggleClass(".disable-click")
 			}
 		}, 100)
 	})
