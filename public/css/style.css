@@ -2,15 +2,49 @@
 	font-family: 'Varela Round', sans-serif;
 }
 
+
+
 body {
 	margin: 0;
 	padding: 0;
 	background-color: #f5f5f5;
 }
 
+.cage {
+	display: none;
+	width: 200px;
+	position: absolute;
+}
+
+.cage:nth-child(1) {
+	top: 0px;
+	left: 0;
+}
+
+.cage:nth-child(2) {
+	top: 0px;
+	right: 0;
+}
+
+.cage:nth-child(3) {
+	bottom: 0px;
+	left: 0px;
+}
+
+.cage:nth-child(4) {
+	bottom: 0px;
+	right: 0px;
+}
+
+.maze-background {
+	background-image: url('../img/maze-background.svg');
+	background-size: fill;
+}
+
 .fade-in {
 	display: none;
 }
+
 
 @keyframes page-transition-out {
 	0% { top: 0; }
@@ -30,7 +64,6 @@ body {
 #container {
   width: 500px;
   height: 500px;
-  /*border: 3px solid black;*/
   margin: auto;
 }
 
