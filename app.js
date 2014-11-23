@@ -46,23 +46,24 @@ net.createServer(function(c) {
 
     io.on('connection', function (socket) {
 
-        change = c.on('data', parseData);
-        switch(change) {
-            case 'maze':
-                socket.emit('maze', playerMaze);
-                break;
-            case 'bomb':
-            /* bomb
-                0 - miss
-                1 - almost
-                2 - hit
-             */
-                socket.emit('bomb', bomb);
-                break;
-            case 'dead':
-                socket.emit('dead', true);
-                break;
-        }
+        c.on('data', function (data) {
+            switch(parseData(data)) {
+                case 'maze':
+                    socket.emit('maze', playerMaze);
+                    break;
+                case 'bomb':
+                /* bomb
+                    0 - miss
+                    1 - almost
+                    2 - hit
+                 */
+                    socket.emit('bomb', bomb);
+                    break;
+                case 'dead':
+                    socket.emit('dead', true);
+                    break;
+            }
+        });
 
         socket.on('click', function (data) {
 
@@ -80,7 +81,6 @@ net.createServer(function(c) {
 }).listen(5000);
 
 function parseData(data) {
-    console.log(data);
     var string = decoder.write(data);
     var stringType = string.split('\n');
 
