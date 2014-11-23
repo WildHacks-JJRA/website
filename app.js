@@ -31,7 +31,8 @@ io.on('connection', function (socket) {
 
         //Close
         if(playerNearClick(data)) {
-            socket.emit('')
+            socket.emit('p1 closeClick', true);
+            socket.emite('p2 closeClick', true);
         }
     });
 });
