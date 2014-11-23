@@ -3,24 +3,25 @@ $(document).ready(function() {
 	var clickEnabled = true
 	var chargeLevel = 0
 	var rechargeTimer = 0
-	$("#container").click(function() {
+
+
+
+	$("#container:not(.disable-click)").click(function() {
 		clickEnabled = false
 		chargeLevel = 0
 		recharge()
-
-		
+		$("#container").toggleClass(".disable-click")
+		console.log(this)
 		rechargeTimer = setInterval(function() {
 			chargeLevel = chargeLevel + 5
 			recharge()
 			if (chargeLevel >= 100) {
 				clearInterval(rechargeTimer)
+				$("#container").toggleClass(".disable-click")
 			}
 		}, 100)
-
-
-
-		
 	})
+	
 
 	var recharge = function() {
 		$(".progress-bar").css("width", chargeLevel + "%")
@@ -38,7 +39,7 @@ $(document).ready(function() {
 			$(".recharge-status").text("Click away!")
 			$(".progress-bar").css("background-color", "#03ff00")
 			$(".recharge-status").css("color", "#03ff00")
-			cilckEnabled = true
+			clickEnabled = true
 
 		}
 	}
