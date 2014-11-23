@@ -30,13 +30,8 @@ body {
 #container {
   width: 500px;
   height: 500px;
-  border: 1px solid black;
+  /*border: 3px solid black;*/
   margin: auto;
-}
-
-#container.disable-click {
-	pointer-events: none;
-	opacity: 0.5;
 }
 
 .hero-content {
@@ -53,6 +48,10 @@ body {
 ul {
 	margin: 0;
 	padding: 0;
+}
+
+li:not(:first-child) {
+	margin-left: 16px;
 }
 
 .list-title {
