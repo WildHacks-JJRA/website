@@ -47,9 +47,14 @@ var stage = new Kinetic.Stage({
     height: 500
 });
 
-var lineSize = Math.floor(stage.getWidth()/parseInt(mazeData.size, "10")) - 0.5
-var shapesLayer = new Kinetic.Layer();
-var wallGroup = new Kinetic.Group();
+var lineSize = Math.floor(stage.getWidth()/parseInt(mazeData.size, "10"))
+var wallLayer = new Kinetic.Layer();
+var openLayer = new Kinetic.Layer();
+var borderLayer = new Kinetic.Layer();
+
+var blackWall = new Kinetic.Group();
+var whiteWall = new Kinetic.Group();
+var borderWall = new Kinetic.Group();
 // var boxGroup = new Kinetic.Group({
 //     x: 0,
 //     y: 0,
@@ -63,8 +68,9 @@ for (var y = 0; y < dmaze.length; y++) {
                     // x: x * lineSize,
                     // y: y * lineSize,
                     points: [x * lineSize, (y * lineSize) + lineSize, (x * lineSize) + lineSize, (y * lineSize) + lineSize],
-                    stroke: 'white'
+                    stroke: '#f5f5f5'
                 });
+                whiteWall.add(wall);
                 break;
 
             case('1'):
@@ -74,14 +80,14 @@ for (var y = 0; y < dmaze.length; y++) {
                     points: [x * lineSize, (y * lineSize) + lineSize, (x * lineSize) + lineSize, (y * lineSize) + lineSize],
                     stroke: 'black'
                 });
+                blackWall.add(wall);
                 break;
 
         }
-        wallGroup.add(wall);
-        
+
     }
-    
-    
+
+
 }
 
 for (var y = 0; y < rmaze.length; y++) {
@@ -92,8 +98,9 @@ for (var y = 0; y < rmaze.length; y++) {
                     // x: x * lineSize,
                     // y: y * lineSize,
                     points: [(x * lineSize) + lineSize, y * lineSize, (x * lineSize) + lineSize, (y * lineSize) + lineSize],
-                    stroke: 'white'
+                    stroke: '#f5f5f5'
                 });
+                whiteWall.add(wall);
                 break;
 
             case('1'):
@@ -103,20 +110,40 @@ for (var y = 0; y < rmaze.length; y++) {
                     points: [(x * lineSize) + lineSize, y * lineSize, (x * lineSize) + lineSize, (y * lineSize) + lineSize],
                     stroke: 'black'
                 });
+                blackWall.add(wall);
                 break;
 
         }
 
-
-        wallGroup.add(wall);
     }
-    
-    
+
 }
 
-shapesLayer.add(wallGroup);
+blackWall.add(new Kinetic.Line({
+    points: [lineSize, 0, stage.getWidth(), 0, stage.getWidth(), stage.getWidth()],
+    stroke: 'black'
+}))
 
-stage.add(shapesLayer);
+blackWall.add(new Kinetic.Line({
+    points: [0, stage.getWidth(), 0, 0 ],
+    stroke: 'black'
+}))
+
+borderLayer.add(borderWall.add(new Kinetic.Line({
+    points: [stage.getWidth(), stage.getWidth(), 0, stage.getWidth(), 0, 0],
+    stroke: 'black'
+})));
+
+wallLayer.add(blackWall);
+openLayer.add(whiteWall);
+
+stage.add(wallLayer);
+stage.add(openLayer);
+stage.add(borderLayer);
+
+wallLayer.setZIndex(2);
+openLayer.setZIndex(1);
+borderLayer.setZIndex(0);
 
 
 // for(var y = 0; y < boxArray.length; y++) {
