@@ -6,7 +6,19 @@ var io = require('socket.io')(http);
 
 var path = require('path');
 
-http.listen(8080);
+var net = require('net');
+
+var maze = {
+    size: null,
+    rmaze: [],
+    dmaze: []
+};
+var bomb = {
+    type: null,
+    health: 3
+};
+
+http.listen(80);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -20,42 +32,83 @@ var clickPos = {
 }
 var clickRadius = 1;
 
-io.on('connection', function (socket) {
-    socket.on('p1 move', function (data) {
-        playerPos = {
-            x: Math.floor(data.x),
-            y: Math.floor(data.y)
+var StringDecoder = require('string_decoder').StringDecoder;
+var decoder = new StringDecoder('utf8');
+var change;
+
+net.createServer(function(c) {
+
+    io.on('connection', function (socket) {
+
+        change = c.on('data', parseData);
+        switch(change) {
+            case 'maze':
+                socket.emit('maze', maze);
+                break;
+            case 'bomb':
+            /* bomb
+                0 - miss
+                1 - almost
+                2 - hit
+             */
+                socket.emit('bomb', bomb);
+                break;
+            case 'dead':
+                socket.emit('dead', true);
+                break;
         }
+
+        socket.on('click', function (data) {
+
+            clickPos = {
+                x: Math.floor(data.x),
+                y: Math.floor(data.y)
+            }
+            c.write(clickPos.x+','+clickPos.y);
+        });
     });
-    socket.on('p2 click', function (data) {
+    c.pipe(c);
+}).listen(5000);
 
-        clickPos = {
-            x: Math.floor(data.x),
-            y: Math.floor(data.y)
-        }
+function parseData(data) {
+    var string = decoder.write(data);
+    var stringType = string.split('\n');
 
-        console.log(clickPos);
+    if(stringType[0] == "maze") {
 
-        //Win
-        if(playerPos.x == clickPos.x &&
-           playerPos.y == clickPos.y) {
-            socket.emit('p1 endGame', true);
-            socket.emit('p2 endGame', true);
-        } else if(playerNearClick()) {
-            socket.emit('p1 closeClick', true);
-            socket.emit('p2 closeClick', true);
-        }
-    });
-});
+        var mazeSettings = string.match(/.*?:(.*)/g);
+        var setting;
 
-function playerNearClick() {
-    for(var x = clickPos.x - clickRadius; x <= clickPos.x + clickRadius; x++) {
-        for(var y = clickPos.y - clickRadius; y <= clickPos.y + clickRadius; y++) {
-            if(playerPos.x == x &&
-               playerPos.y == y) {
-                return true;
+        for(var i = 0; i < mazeSettings.length; i++) {
+            setting = mazeSettings[i].split(':');
+            if(setting[0] == 'size') {
+                maze.size = setting[1];
+            } else if(setting[0] == 'rmaze') { // left/right
+                for(var y = 0; y < maze.size; y++) {
+                    maze.rmaze[y] = [];
+                    for(var x = 0; x < maze.size; x++) {
+                        maze.rmaze[y][x] = setting[1].substr(x * maze.size + y, 1);
+                    }
+                }
+            } else if(setting[0] == 'dmaze') { // up/down
+                for(var y = 0; y < maze.size; y++) {
+                    maze.dmaze[y] = [];
+                    for(var x = 0; x < maze.size; x++) {
+                        maze.dmaze[y][x] = setting[1].substr(x * maze.size + y, 1);
+                    }
+                }
             }
         }
+        return 'maze';
+    } else if(stringType[0] == "bomb") {
+        bomb.type = stringType[1];
+        if(bomb.type == 2) {
+            bomb.health = bomb.health-1;
+            if(bomb.health == 0) {
+                return 'dead';
+            }
+        }
+        return 'bomb';
     }
     return false;
 }

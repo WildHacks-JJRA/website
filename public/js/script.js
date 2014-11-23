@@ -1,3 +1,5 @@
+var $container = $("#container");
+
 var example = [
     // [0, 1, 1, 1, 1, 1, 1, 1],
     // [0, 0, 0, 1, 1, 1, 1, 1],
@@ -104,8 +106,9 @@ for (var y = 0; y < rmaze.length; y++) {
                 break;
 
         }
+
+
         wallGroup.add(wall);
-        
     }
     
     
