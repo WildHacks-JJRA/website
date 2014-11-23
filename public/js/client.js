@@ -19,7 +19,7 @@ $container.on('click', function(e) {
             y: e.offsetY / boxSize
         });
 
-        socket.emit('p2 click', {
+        socket.emit('click', {
             x: e.offsetX / boxSize,
             y: e.offsetY / boxSize
         });
