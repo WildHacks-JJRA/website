@@ -42,13 +42,14 @@ var StringDecoder = require('string_decoder').StringDecoder;
 var decoder = new StringDecoder('utf8');
 var change;
 
+var emitType = null;
+var emiteValue = null;
+
 net.createServer(function(c) {
     c.on('data', function (data) {
         change = parseData(data);
 
         io.on('connection', function (socket) {
-            console.log('connection');
-
             switch(change) {
                 case 'maze':
                     socket.emit('maze', playerMaze);
@@ -66,19 +67,24 @@ net.createServer(function(c) {
                     socket.emit('dead', true);
                     break;
             }
+        });
 
-            socket.on('click', function (data) {
-                console.log('player clicked');
+    });
 
-                clickPos = {
-                    x: Math.floor(data.x),
-                    y: Math.floor(data.y)
-                }
-                c.write(clickPos.x+','+clickPos.y);
+    io.on('connection', function (socket) {
+        console.log('connection');
 
-                revealMaze();
-                socket.emit('maze', playerMaze);
-            });
+        socket.on('click', function (data) {
+            console.log('player clicked');
+
+            clickPos = {
+                x: Math.floor(data.x),
+                y: Math.floor(data.y)
+            }
+            c.write(clickPos.x+','+clickPos.y);
+
+            revealMaze();
+            socket.emit('maze', playerMaze);
         });
     });
     c.pipe(c);
