@@ -1,4 +1,3 @@
-$(document).ready(function() {
 
 	var clickEnabled = true
 	var chargeLevel = 0
@@ -48,4 +47,3 @@ $(document).ready(function() {
 
 		}
 	}
-})
