@@ -62,12 +62,14 @@ net.createServer(function(c) {
                     }
                 }
             }
-            socket.emit('maze', maze);
         } else {
 
         }
     });
+
     io.on('connection', function (socket) {
+        socket.emit('maze', maze);
+
         socket.on('click', function (data) {
 
             clickPos = {
