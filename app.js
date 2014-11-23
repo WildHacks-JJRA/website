@@ -87,7 +87,7 @@ function parseData(data) {
         }
         return 'maze';
     } else {
-        bomb.type = stringType[1];
+        bomb.type = string;
         if(bomb.type == 2) {
             bomb.health = bomb.health-1;
             if(bomb.health == 0) {
