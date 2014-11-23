@@ -24,5 +24,7 @@ $container.on('click', function(e) {
             x: e.offsetX / lineSize,
             y: e.offsetY / lineSize
         });
+        clickEnabled = false;
+        launchRecharge();
     }
 });
