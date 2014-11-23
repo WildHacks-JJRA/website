@@ -13,8 +13,18 @@ socket.on('p2 closeClick', function (data) {
 // Detect mouse pos and send x,y points
 var $container = $("#container");
 var clickPos = {};
+
+
+var bombSound = document.createElement('audio');
+bombSound.setAttribute('src', './mp3/bomb.mp3');
+// bombSound.setAttribute('autoplay', 'autoplay');
+
+bombSound.addEventListener("load", function() {
+    bombSound.play();
+}, true);
+
+
 $container.on('click', function(e) {
-    console.log("CLICKED THE BOX");
     if(clickEnabled) {
         clickPos = {
             x: Math.floor(e.offsetX / lineSize),
@@ -29,6 +39,8 @@ $container.on('click', function(e) {
         }, 500, 'swing', function() {
             $(this).parent().fadeOut('slow');
         });
+
+        bombSound.play();
 
         socket.emit('click', clickPos);
         clickEnabled = false;
