@@ -13,7 +13,10 @@ var maze = {
     rmaze: [],
     dmaze: []
 };
-var bomb = null;
+var bomb = {
+    type: null,
+    health: 3
+};
 
 http.listen(80);
 
@@ -47,9 +50,11 @@ net.createServer(function(c) {
                 0 - miss
                 1 - almost
                 2 - hit
-                3 - over
              */
                 socket.emit('bomb', bomb);
+                break;
+            case 'dead':
+                socket.emit('dead', true);
                 break;
         }
 
@@ -96,7 +101,13 @@ function parseData(data) {
         }
         return 'maze';
     } else if(stringType[0] == "bomb") {
-        bomb = stringType[1];
+        bomb.type = stringType[1];
+        if(bomb.type == 2) {
+            bomb.health = bomb.health-1;
+            if(bomb.health == 0) {
+                return 'dead';
+            }
+        }
         return 'bomb';
     }
     return false;
