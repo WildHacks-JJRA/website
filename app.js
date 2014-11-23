@@ -11,8 +11,8 @@ http.listen(8080);
 app.use(express.static(path.join(__dirname, 'public')));
 
 var playerOnePos = {
-    x: null,
-    y: null
+    x: 0,
+    y: 0
 };
 var clickRadius = 1;
 

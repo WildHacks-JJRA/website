@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
     <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 </head>
 <body>
 
@@ -40,15 +41,9 @@
 	</div>
 
     <script src="/socket.io/socket.io.js"></script>
-    <script>
-    var socket = io.connect('http://localhost');
-    socket.on('news', function (data) {
-        console.log(data);
-        socket.emit('my other event', { my: 'data' });
-    });
-    </script>
     <script src="/js/cooldown.js"></script>
     <script src="/js/kinetic.min.js"></script>
     <script src="/js/script.js"></script>
+    <script src="/js/client.js"></script>
 </body>
 </html>
