@@ -114,8 +114,7 @@ net.createServer(function(c) {
                 case 'bomb':
                 /* bomb
                     0 - miss
-                    1 - almost
-                    2 - hit
+                    1 - hit
                  */
                     socket.emit('bomb', bomb);
                     break;
@@ -128,8 +127,8 @@ net.createServer(function(c) {
     });
 
     io.on('connection', function (socket) {
-        socket.emit('maze', playerMaze);
         console.log('connection');
+        socket.emit('maze', playerMaze);
 
         socket.on('click', function (data) {
             console.log('player clicked');
@@ -209,7 +208,4 @@ function revealMaze() {
         }
     }
     console.log(playerMaze);
-}
-
-function checkClient(c) {
 }
