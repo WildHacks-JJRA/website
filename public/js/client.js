@@ -1,13 +1,9 @@
-var socket = io.connect('http://jjra.cloudapp.net');
-
-socket.on('p2 endGame', function (data) {
-    console.log('You win!');
-    // when the click was close to the player
-});
-
-socket.on('p2 closeClick', function (data) {
-    console.log('ping!');
-    // when the click was close to the player
+$.ajax({
+    url: '/api/all',
+    method: 'get',
+    dataType: 'json'
+}).done(function(data) {
+    console.log(data);
 });
 
 // Detect mouse pos and send x,y points
@@ -42,7 +38,14 @@ $container.on('click', function(e) {
 
         bombSound.play();
 
-        socket.emit('click', clickPos);
+        $.ajax({
+            url: '/api/click',
+            method: 'post',
+            data: clickPos
+        }).done(function(data) {
+            drawMaze(data);
+        });
+
         clickEnabled = false;
         launchRecharge();
     }

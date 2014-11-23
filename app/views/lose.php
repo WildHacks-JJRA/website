@@ -8,13 +8,13 @@
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 </head>
 <body class="maze-background">
-    
+
 
     <div class="hero-content">
-		<div class="JJRA-logo-lose"></div>
-		<h1>The NickCAGE</h1>
+    <div class="JJRA-logo-lose"></div>
+    <h1>The NickCAGE</h1>
         <h2>You lost...</h2>
-		<button class="transition-button" data-link="game.html">Try again!</button>
+    <button class="transition-button" data-link="game.html">Try again!</button>
     </div>
 
 

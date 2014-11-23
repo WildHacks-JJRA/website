@@ -8,13 +8,13 @@
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 </head>
 <body class="maze-background">
-    
+
 
     <div class="hero-content">
-		<div class="JJRA-logo-win"></div>
-		<h1>The NickCAGE</h1>
+    <div class="JJRA-logo-win"></div>
+    <h1>The NickCAGE</h1>
         <h2>You won!</h2>
-		<button class="transition-button" data-link="game.html">Play again!</button>
+    <button class="transition-button" data-link="game.html">Play again!</button>
     </div>
 
     <audio autoplay src="./mp3/cheering.mp3"></audio>

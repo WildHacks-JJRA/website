@@ -4,30 +4,30 @@
     <title>:~)</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
     <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 </head>
 <body class="maze-background">
 
     <div class="hero-content">
-		<div class="JJRA-logo"></div>
-		<h1>The NickCAGE</h1>
-		<button class="transition-button" data-link="game.html">Play!</button>
+        <div class="JJRA-logo"></div>
+        <h1>The NickCAGE</h1>
+        <button class="transition-button" data-link="game">Play!</button>
     </div>
 
 
 
 
 
-    <img class="cage" src="./img/nick1.jpg">
+    <img class="cage" src="/img/nick1.jpg">
     <!-- <img class="cage" src="./img/nick2.jpg"> -->
-    <img class="cage" src="./img/nick3.jpg">
-    <img class="cage" src="./img/nick4.jpg">
+    <img class="cage" src="/img/nick3.jpg">
+    <img class="cage" src="/img/nick4.jpg">
 
 
-    <script src="./js/kinetic.min.js"></script>
-    <script src="./js/script.js"></script>
-    <script src="./js/transition.js"></script>
+    <script src="/js/kinetic.min.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/transition.js"></script>
 
 </body>
 </html>

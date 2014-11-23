@@ -6,9 +6,12 @@ var example = [
     // [1, 1, 0, 1, 1, 1, 1, 1]
 ];
 
-socket.on('maze', function (data) {
+$.ajax({
+    url: '/api/maze',
+    method: 'get',
+    dataType: 'json'
+}).done(function(data) {
     drawMaze(data);
-    // when the click was close to the player
 });
 
 function drawMaze(mazeData) {
