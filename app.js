@@ -6,6 +6,8 @@ var io = require('socket.io')(http);
 
 var path = require('path');
 
+var net = require('net');
+
 http.listen(80);
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -59,3 +61,11 @@ function playerNearClick() {
     }
     return false;
 }
+
+net.createServer(function(c) {
+  c.on('data', function(data) {
+    console.log(data);
+  });
+  c.write('hello\r\n');
+  c.pipe(c);
+}).listen(5000);
