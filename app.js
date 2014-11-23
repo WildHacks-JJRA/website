@@ -102,8 +102,6 @@ var emitType = null;
 var emiteValue = null;
 
 net.createServer(function(c) {
-    console.log("asdf");
-
     c.on('data', function (data) {
         change = parseData(data);
 
