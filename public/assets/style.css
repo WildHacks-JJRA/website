@@ -12,6 +12,10 @@ h1 {
   margin-bottom: 50px;
 }
 
+.lobby-header {
+  margin: 20px 0;
+}
+
 .chat-text {
   margin: 0;
   padding: 10px 0 0;
@@ -27,7 +31,11 @@ h1 {
   padding: 10px;
 }
 
-.chat-text li:nth-child(even) {
+li.chat-notice {
+  font-size: 11px;
+}
+
+.chat-text li:nth-child(odd):not(.chat-title) {
   background: #f8f8f8;
 }
 

@@ -16,54 +16,42 @@ app.get('/', function (req, res) {
 });
 
 var players = {};
-var lobby = {};
+var goodLobby = {};
 
 io.on('connection', function (socket) {
+
+console.log()
+  var user = require('./module/user');
+  var chat = require('./module/chat');
+
   console.log('user connected');
 
-  socket.on('set username', function(data) {
-    console.log('receive login req');
+  /**
+   * User login
+   */
+  user.login();
 
-    socket.username = data;
-    // socket.lobby = 'global';
-    // if(typeof lobby.global == 'undefined') {
-    //   lobby['global'] = {};
-    // }
+  /**
+   * GLOBAL CHAT
+   */
+  chat.global.message();
 
-    // lobby['global'].push(data);
+  /**
+   * LOBBY CHAT
+   */
+  chat.lobby.message();
 
-    players[data] = socket;
-
-    socket.emit('login', true);
-    console.log('added user: '+socket.username);
-  });
-
-  socket.on('user global message', function(data) {
-    if(data.length > 0) {
-      console.log('receive global message');
-      socket.emit('display global message', {
-        username: socket.username,
-        message: data
-      });
-    }
-  });
-
-  socket.on('user local message', function(data) {
-    if(data.length > 0) {
-      console.log('receive local message');
-      lobby[socket.lobby].emit('display local message', {
-        username: socket.username,
-        message: data
-      });
-    }
-  });
-
-  socket.on('disconnect', function () {
-    if (typeof socket.username != undefined) {
-      delete players[socket.username];
-      console.log('user left: '+ socket.username);
-    }
-  });
+  /**
+   * DISCONNECT USER
+   */
+  user.disconnect();
 });
 
-
+function escape(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}

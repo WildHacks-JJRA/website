@@ -22,15 +22,25 @@
   <div class="container">
     <h1 class="text-center">BEST TIC TAC TOE<br><small>:~)</small></h1>
     <div class="col-md-8 lobby-list">
-      <div class="panel panel-default">
-        <div class="panel-body">
-          BEST PLAYER NA <strong> - Jung</strong>
+      <div class="row lobby-header">
+        <h4 class="col-xs-6">Avaliable Lobby</h4>
+        <div class="col-xs-6 text-right">
+          <button class="btn btn-default">Create Lobby</button>
         </div>
       </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              BEST PLAYER NA <strong> - Jung</strong>
+            </div>
+          </div>
 
-      <div class="panel panel-default">
-        <div class="panel-body">
-          LOL SCRUBS <strong> - Jung</strong>
+          <div class="panel panel-default">
+            <div class="panel-body">
+              LOL SCRUBS <strong> - Jung</strong>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -49,7 +59,7 @@
           <div role="tabpanel" class="tab-pane active" id="global-chat">
             <div class="col-xs-12">
               <ul class="chat-text">
-                <li>
+                <li class="chat-title">
                   <h4>Global Chat</h4>
                 </li>
               </ul>
@@ -59,8 +69,8 @@
           <div role="tabpanel" class="tab-pane" id="lobby-chat">
             <div class="col-xs-12">
               <ul class="chat-text">
-                <li>
-                  <h4>Lobby Chat</h4>
+                <li class="chat-title">
+                  <h4>Lobby Chat &mdash; <small></small></h4>
                 </li>
               </ul>
               <input type="text" class="chat-box" placeholder=":~)">
@@ -82,5 +92,7 @@
     }).show();
   </script>
   <script src="/assets/script.js"></script>
+  <script src="/assets/chat.js"></script>
+  <script src="/assets/lobby.js"></script>
 </body>
 </html>
